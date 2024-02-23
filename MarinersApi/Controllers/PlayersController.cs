@@ -17,9 +17,16 @@ namespace MarinersApi.Controllers
 
         // GET: api/Players
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
+        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers(int pageNumber = 1, int pageSize = 10)
         {
-            return await _context.Players.ToListAsync();
+            var players = await _context.Players
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            bool hasNextPage = await _context.Players.Skip(pageNumber * pageSize).AnyAsync();
+
+            return Ok(new { Players = players, HasNextPage = hasNextPage });
         }
 
         // GET: api/Players/5
