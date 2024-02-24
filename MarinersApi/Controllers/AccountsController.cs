@@ -44,7 +44,7 @@ public class AccountsController : ControllerBase
         }
     }
 
-    [HttpPost("Sig<nIn")]
+    [HttpPost("signIn")]
     public async Task<IActionResult> SignIn(SignInDto userInfo)
     {
         IdentityUser user = await _userManager.FindByEmailAsync(userInfo.Email);

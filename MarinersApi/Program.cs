@@ -24,10 +24,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAny",
-        builder =>
+    options.AddDefaultPolicy(
+        policy =>
         {
-            builder.AllowAnyOrigin()
+            policy.AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
@@ -66,7 +66,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseCors("AllowAny");
+app.UseCors();
 
 app.MapControllers();
 

@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MarinersApi.Models;
-using Microsoft.AspNetCore.Cors;
+
+using Microsoft.AspNetCore.Authorization;
 
 namespace MarinersApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PlayersController : ControllerBase
     {
         private readonly MarinersApiContext _context;
@@ -17,18 +19,23 @@ namespace MarinersApi.Controllers
         }
 
         // GET: api/Players
-        [EnableCors("AllowAny")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers(int pageNumber = 1, int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Player>>> GetPlayers(string name, int pageNumber = 1, int pageSize = 10)
         {
-            var players = await _context.Players
+            var players = _context.Players.AsQueryable();
+
+            if (name != null)
+            {
+                players = players.Where(p => p.Name.Contains(name));
+            }
+            var playerPage = await players
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-            bool hasNextPage = await _context.Players.Skip(pageNumber * pageSize).AnyAsync();
+            bool hasNextPage = await players.Skip(pageNumber * pageSize).AnyAsync();
 
-            return Ok(new { Players = players, HasNextPage = hasNextPage });
+            return Ok(new { Players = playerPage, HasNextPage = hasNextPage });
         }
 
         // GET: api/Players/5
