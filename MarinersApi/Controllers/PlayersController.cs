@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MarinersApi.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace MarinersApi.Controllers
 {
@@ -16,6 +17,7 @@ namespace MarinersApi.Controllers
         }
 
         // GET: api/Players
+        [EnableCors("AllowAny")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers(int pageNumber = 1, int pageSize = 10)
         {
