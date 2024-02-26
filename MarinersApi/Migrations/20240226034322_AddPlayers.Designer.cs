@@ -3,6 +3,7 @@ using System;
 using MarinersApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarinersApi.Migrations
 {
     [DbContext(typeof(MarinersApiContext))]
-    partial class MarinersApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240226034322_AddPlayers")]
+    partial class AddPlayers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,7 +100,7 @@ namespace MarinersApi.Migrations
                             Name = "Ty France",
                             Number = 23,
                             OnBase = 0.33700000000000002,
-                            Ops = 0.70300000000000007,
+                            Ops = 0.76200000000000001,
                             Slug = 0.36599999999999999
                         },
                         new
@@ -109,7 +111,7 @@ namespace MarinersApi.Migrations
                             Name = "Teoscar Hernandez",
                             Number = 35,
                             OnBase = 0.30499999999999999,
-                            Ops = 0.73999999999999999,
+                            Ops = 0.76200000000000001,
                             Slug = 0.435
                         },
                         new
@@ -120,7 +122,7 @@ namespace MarinersApi.Migrations
                             Name = "Eugenio Suarez",
                             Number = 28,
                             OnBase = 0.32300000000000001,
-                            Ops = 0.71399999999999997,
+                            Ops = 0.76200000000000001,
                             Slug = 0.39100000000000001
                         },
                         new
@@ -131,7 +133,7 @@ namespace MarinersApi.Migrations
                             Name = "Jarred Kelenic",
                             Number = 29,
                             OnBase = 0.32700000000000001,
-                            Ops = 0.746,
+                            Ops = 0.76200000000000001,
                             Slug = 0.41899999999999998
                         });
                 });

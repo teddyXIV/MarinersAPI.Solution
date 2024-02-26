@@ -71,6 +71,9 @@ This API allows the user to:
 * In the command line, run the command "dotnet run" to compile and execute the application.
 * Optionally, you can run "dotnet build" to compile this application without running it.
 
+## Note on CORS
+CORS (Cross-Origin Resource Sharing) is enabled, allowing requests to be made from client-side scripts on one domain to resources hosted on another domain.
+
 ## Endpoints
 
 To test the endpoints of this API, use [Postman](https://www.postman.com/) to send requests.
@@ -146,13 +149,12 @@ When making a POST request to `http://localhost:5000/api/Players/`, **body** mus
 
 ```json
 {
-  "Name": "Eugenio Suarez",
-  "Number": 28,
-  "Average": 0.232,
-  "OnBase": 0.323,
-  "Slug": 0.391,
-  "Homerun": 22,
-  "CreatorId": "Example123" 
+  "Name": "Josh Rojas",
+  "Number": 4,
+  "Average": 0.245,
+  "OnBase": 0.303,
+  "Slug": 0.338,
+  "Homerun": 4
 }
 ```
 
